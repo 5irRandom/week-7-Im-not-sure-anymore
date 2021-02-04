@@ -19,7 +19,8 @@ function weather(search) {
         coords.lon = data.coord.lon
         coords.lat = data.coord.lat
         coords.comb = "lat=" + coords.lat + "&lon=" + coords.lon
-        //Put local storage thing for city here
+        localStorage.setItem(input, coords.comb)
+        localStorage.getItem([0])
         oneCall(coords.comb)
     })
     .catch(error => {
@@ -35,7 +36,16 @@ function oneCall(input) {
     .then (data => {
         console.log(data)
         var temp = data.current.temp
+        var humidity = data.current.humidity
+        var windSpeed = data.current.wind_speed
+        var uvi = data.current.uvi
         yep = weatherSpot.append(temp + "°F")
+        weatherSpot.appendChild(document.createElement('br'))
+        nope = weatherSpot.append(humidity + "%")
+        weatherSpot.appendChild(document.createElement('br'))
+        speed = weatherSpot.append(windSpeed + " MPH")
+        weatherSpot.appendChild(document.createElement('br'))
+        maybe = weatherSpot.append("UVI: " + uvi)
         weatherSpot.appendChild(document.createElement('br'))
     })
     .catch(error => {
